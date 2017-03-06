@@ -2,7 +2,7 @@
 
 This document describes the network implementation plan for the network of the fysio feedback system. 
 
-![proposed network diagram](fysionetwerk.svg)
+![proposed network diagram](fysionetwerk.png)
 
 
 ## Tablet Configuration
