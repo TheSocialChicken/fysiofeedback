@@ -1,0 +1,49 @@
+@startuml
+
+package "Location Fysio" {
+node "Tablet" as tablet {
+[webbrowser]
+}
+	[router]
+}
+note left of tablet
+runs Android with locked webbrowser
+This means only the webbrowser is accessible
+end note
+note right of [router]
+'hidden' network
+strong password
+both will prevent packet sniffing
+end note
+
+
+cloud "The internet" as internet{
+
+}
+
+package "Location Ruijtenberg" {
+
+	node "Server" as S2{
+		database "MySQL" {
+			[SQL]
+		}
+		[webApp]
+	}
+}
+
+
+
+
+[webbrowser] <--> [router]
+[router] <--> internet
+internet <--> [webApp]
+[webApp] --> [SQL]: DATA
+[webbrowser] .. [webApp]: Secure SSL encryption
+[router] .. S2: optional Secure VPN Tunnel
+
+
+note "Pros: single device per location, cheap, easiest to setup.\ncons: Usage of third party software. \n\nThis is the most secure we can get without ridiculous expenses." as N1
+
+
+
+@enduml
