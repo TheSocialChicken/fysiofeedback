@@ -1,49 +1,78 @@
 @startuml
 
-package "Location Fysio" {
+package "Location Fysio 1" {
 node "Tablet" as tablet {
 [webbrowser]
 }
 	[router]
 }
+
+package "Location Fysio 2" {
+node "Tablet" as tablet2 {
+[webbrowser2]
+}
+	[router2]
+}
+
+package "Location Fysio 3" {
+node "Tablet" as tablet3 {
+[webbrowser3]
+}
+	[router3]
+}
 note left of tablet
-runs Android with locked webbrowser
-This means only the webbrowser is accessible
+Runs Linux configured to only launch a webbrowser to the webApp. 
 end note
+
 note right of [router]
 'hidden' network
 strong password
-both will prevent packet sniffing
+optional secure vpn tunnel to the server
 end note
+
 
 
 cloud "The internet" as internet{
 
+
 }
 
 package "Location Ruijtenberg" {
-
+	
+	[firewall]
+	[router4]
 	node "Server" as S2{
 		database "MySQL" {
 			[SQL]
 		}
 		[webApp]
+		[zafara]
 	}
 }
 
 
+[router] .. internet: SSL over INTERNET
+note top of [firewall]
+Only alows traffic from the Tablet locations
+This is known as adress filtering
+end note
+
+note right of [webbrowser]
+secure SSL encryption to webApp
+end note
 
 
-[webbrowser] <--> [router]
-[router] <--> internet
-internet <--> [webApp]
+[webbrowser] -- [router]: SSL
+
 [webApp] --> [SQL]: DATA
-[webbrowser] .. [webApp]: Secure SSL encryption
-[router] .. S2: optional Secure VPN Tunnel
+[router4] -- [firewall]: SSL
+[router4] .. internet: SSL
+[firewall] -- [webApp]
+[webbrowser2] -- [router2]: SSL
+[router2] .. internet: SSL over INTERNET
 
-
-note "Pros: single device per location, cheap, easiest to setup.\ncons: Usage of third party software. \n\nThis is the most secure we can get without ridiculous expenses." as N1
-
-
+[webbrowser3] -- [router3]: SSL over INTERNET
+[router3] .. internet: SSL over INTERNET
+note "Pros: single device per location, cheap, easiest to setup.\ncons: Usage of third party software. " as N1
 
 @enduml
