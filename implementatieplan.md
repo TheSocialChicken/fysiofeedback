@@ -33,3 +33,32 @@ This can be done in 2 ways:
 - SSL encryption using a free [lets-encrypt certificate](https://letsencrypt.org/)
 
 The server will run Apache2 with strict-ssl enabled. This means that the server will stop serving the application if the encryption is somehow disabled. 
+
+
+#timeline
+
+## week 1 (6-10 march)
+
+- choose appropiate tabblet and order this
+- setup initial apache2 server and initial firewall
+- choose other neccesary equipment 
+
+## week 2 (13-17 march)
+- setup ssl encryption
+- particial firewall configuration
+- configure tablet in browser-only mode
+- testing
+
+## week 3 (20-24 march)
+
+- full firewall configuration
+- app deployment + SQL config
+- testing
+
+## week 4 (27-31 march)
+
+- time for testing
+
+## forther notes in planning
+
+At the end of each week, we need to provide a progress report to ruitenberg
